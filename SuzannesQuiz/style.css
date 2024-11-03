@@ -1,0 +1,184 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #fff0f5;
+    color: #333;
+    font-size:1.3em;
+}
+
+/* Quiz Container */
+.quiz-container {
+    text-align: center;
+    width: 1000px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Header Styles */
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #ff69b4;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Question Styles */
+.p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Label Styles */
+label {
+    display: block;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    margin-top:10px;
+    color: #555;
+}
+
+/* Select Dropdown Styles */
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top:10px;
+    margin-bottom:10px;
+    border-radius: 5px;
+    border: 1px solid #ff69b4;
+    background-color: #ffe4e1;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+select:hover {
+    background-color: #ffd1dc;
+}
+
+/* Button Styles */
+button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #fdc2df, #fd60b4);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(255, 105, 180, 0.35);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Choices Button Styles */
+#choices button {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    background-color: #ffe4e1;
+    border: 1px solid #eebed6;
+    border-radius: 5px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#choices button:hover {
+    background-color: #ffd1dc;
+    transform: translateY(-2px);
+}
+
+#choices button:active {
+    transform: translateY(1px);
+    background-color: #ffb6c1;
+}
+
+/* Score Styles */
+#score {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #ff69b4;
+}
+
+/* Fade-in animation for quiz container */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stats Container Styles */
+#stats {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Same width as quiz container */
+}
+
+#stats h2 {
+    color: #ff69b4; /* Pink color for stats heading */
+}
+
+#statsList {
+    list-style: none;
+    padding: 0;
+}
+
+#statsList li {
+    margin: 8px 0;
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #ffe4e1; /* Light pink for stats items */
+    border-radius: 5px;
+}
+
+/* Stats Button Styles */
+#stats button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff99cc;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+#stats button:hover {
+    background-color: #ff66b2;
+}

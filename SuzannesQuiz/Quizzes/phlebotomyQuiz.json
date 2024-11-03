@@ -1,0 +1,27 @@
+[
+    {
+        "question": "What is the most common vein used for venipuncture?",
+        "choices": ["Cephalic vein", "Basilic vein", "Femoral vein", "Median cubital vein"],
+        "correctAnswer": 3
+    },
+    {
+        "question": "What color is the top of the tube used for coagulation tests?",
+        "choices": ["Red", "Blue", "Green", "Purple"],
+        "correctAnswer": 1
+    },
+    {
+        "question": "What angle should be used when inserting the needle for venipuncture?",
+        "choices": ["10-15 degrees", "15-30 degrees", "45-60 degrees", "90 degrees"],
+        "correctAnswer": 1
+    },
+    {
+        "question": "What should be done immediately after collecting a blood sample?",
+        "choices": ["Store it in the refrigerator", "Label the sample", "Centrifuge it", "Dispose of the needle"],
+        "correctAnswer": 1
+    },
+    {
+        "question": "How long should the tourniquet be left on the patient’s arm during venipuncture?",
+        "choices": ["15 seconds", "No more than 1 minute", "2-3 minutes", "5 minutes"],
+        "correctAnswer": 1
+    }
+]

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Stats</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="stats-container">
+        <h1>Your Quiz Stats</h1>
+        <ul id="statsList"></ul>
+        <button onclick="goBack()">Back to Quiz Selector</button>
+    </div>
+
+    <script>
+        // Retrieve stats from local storage and display them
+        document.addEventListener("DOMContentLoaded", () => {
+            const statsList = document.getElementById("statsList");
+            const stats = JSON.parse(localStorage.getItem("quizStats")) || [];
+
+            stats.forEach(stat => {
+                const listItem = document.createElement("li");
+                listItem.textContent = `${stat.quizName} - ${stat.score}/${stat.total} on ${stat.date}`;
+                statsList.appendChild(listItem);
+            });
+        });
+
+        // Function to go back to the quiz selector page
+        function goBack() {
+            window.location.href = 'index.html'; // Change 'index.html' to your main quiz page filename
+        }
+    </script>
+</body>
+</html>

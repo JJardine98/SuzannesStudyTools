@@ -1,0 +1,27 @@
+[
+    {
+        "question": "What is the shape of cocci bacteria?",
+        "choices": ["Rod-shaped", "Spherical", "Spiral", "Comma-shaped"],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Which staining technique is used to differentiate Gram-positive and Gram-negative bacteria?",
+        "choices": ["Acid-fast stain", "Gram stain", "Endospore stain", "Simple stain"],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Which bacterium is commonly found in the intestines and can cause food poisoning?",
+        "choices": ["Escherichia coli", "Staphylococcus aureus", "Pseudomonas aeruginosa", "Streptococcus pyogenes"],
+        "correctAnswer": 0
+    },
+    {
+        "question": "What is the function of flagella in bacteria?",
+        "choices": ["Reproduction", "Attachment to surfaces", "Motility", "DNA replication"],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Which microorganism causes malaria?",
+        "choices": ["Plasmodium", "Trypanosoma", "Giardia", "E. coli"],
+        "correctAnswer": 0
+    }
+]

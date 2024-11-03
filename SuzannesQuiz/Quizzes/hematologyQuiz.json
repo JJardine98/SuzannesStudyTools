@@ -1,0 +1,27 @@
+[
+    {
+        "question": "What is the normal range for adult hemoglobin levels?",
+        "choices": ["13.5-17.5 g/dL for men, 12.0-15.5 g/dL for women", "9-12 g/dL", "15-20 g/dL", "10-13 g/dL"],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Which type of white blood cell is the most abundant in the human body?",
+        "choices": ["Lymphocytes", "Neutrophils", "Monocytes", "Eosinophils"],
+        "correctAnswer": 1
+    },
+    {
+        "question": "What is the main function of red blood cells?",
+        "choices": ["To fight infections", "To carry oxygen", "To form blood clots", "To regulate pH levels"],
+        "correctAnswer": 1
+    },
+    {
+        "question": "A deficiency in which vitamin can lead to anemia?",
+        "choices": ["Vitamin C", "Vitamin D", "Vitamin B12", "Vitamin K"],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Which cell is responsible for the formation of platelets?",
+        "choices": ["Erythrocyte", "Leukocyte", "Megakaryocyte", "Lymphocyte"],
+        "correctAnswer": 2
+    }
+]

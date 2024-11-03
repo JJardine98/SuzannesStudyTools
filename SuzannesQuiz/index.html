@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h1>Quiz App</h1>
+        
+        <!-- Quiz Selector -->
+        <select id="quizSelector" onchange="loadQuiz()">
+            <option value="">--Choose a Quiz--</option>
+            <option value="Quizzes/nationalMockExam.json">Mock Exam #1</option>
+            <option value="Quizzes/hematologyQuiz.json">Hematology Quiz</option>
+            <option value="Quizzes/microbiologyQuiz.json">Microbiology Quiz</option>
+            <option value="phlebotomyQuiz.json">Phlebotomy Quiz</option>
+        </select>
+
+        <div id="quiz" style="display: none;">
+            <p id="question">Select a quiz to start!</p>
+            <div id="choices"></div>
+            <button id="exitButton" onclick="exitQuiz()">Exit Quiz</button>
+        </div>
+
+        <p id="score" style="display: none;"></p>
+        
+        <!-- Stats Page Link -->
+        <button onclick="window.location.href='stats.html'">View Stats</button>
+        
+       
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+[
+    {
+        "question": "What is the main purpose of a centrifuge in a laboratory?",
+        "choices": [
+            "To heat samples",
+            "To measure pH",
+            "To separate components of a mixture",
+            "To analyze chemical composition"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Which of the following is a common anticoagulant used in hematology?",
+        "choices": [
+            "Sodium chloride",
+            "Heparin",
+            "Sodium bicarbonate",
+            "Potassium chloride"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "What is the purpose of a Gram stain in microbiology?",
+        "choices": [
+            "To identify viruses",
+            "To measure blood glucose",
+            "To classify bacteria",
+            "To detect antibodies"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "What color top tube is typically used for coagulation studies?",
+        "choices": [
+            "Red",
+            "Blue",
+            "Green",
+            "Purple"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "In clinical chemistry, what does BUN stand for?",
+        "choices": [
+            "Blood Urea Nitrogen",
+            "Basic Urine Nitrate",
+            "Bilirubin Urea Nitrogen",
+            "Blood Uric Neuron"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Which biosafety level is required for handling Ebola virus in a laboratory setting?",
+        "choices": [
+            "BSL-1",
+            "BSL-2",
+            "BSL-3",
+            "BSL-4"
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "question": "What type of microscope is commonly used for identifying blood cells?",
+        "choices": [
+            "Electron microscope",
+            "Compound light microscope",
+            "Fluorescence microscope",
+            "Confocal microscope"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "What does CBC stand for in hematology?",
+        "choices": [
+            "Complete Blood Chemistry",
+            "Calcium Binding Capacity",
+            "Complete Blood Count",
+            "Coagulation Blood Cells"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Which of the following tests measures the amount of glucose in the blood?",
+        "choices": [
+            "Creatinine test",
+            "Lipid panel",
+            "Glucose test",
+            "Electrolyte panel"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Which personal protective equipment (PPE) is essential when working with hazardous chemicals?",
+        "choices": [
+            "Lab coat and goggles",
+            "Gloves only",
+            "Hair net",
+            "Apron only"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "In serology, what is the purpose of an ELISA test?",
+        "choices": [
+            "To measure enzyme levels",
+            "To detect antibodies",
+            "To count red blood cells",
+            "To analyze cholesterol"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Which microorganism causes tuberculosis?",
+        "choices": [
+            "Escherichia coli",
+            "Staphylococcus aureus",
+            "Mycobacterium tuberculosis",
+            "Salmonella enterica"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Which of the following is commonly used as a fixative in histology?",
+        "choices": [
+            "Formaldehyde",
+            "Ethanol",
+            "Methanol",
+            "Acetic acid"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "What is a typical function of white blood cells?",
+        "choices": [
+            "Carrying oxygen",
+            "Digesting proteins",
+            "Protecting the body against infections",
+            "Regulating blood sugar"
+        ],
+        "correctAnswer": 2
+    },
+    {
+        "question": "Which of the following is a common method for sterilizing lab equipment?",
+        "choices": [
+            "Autoclaving",
+            "Washing with soap",
+            "Drying",
+            "Freezing"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "What does 'universal precautions' mean in a laboratory setting?",
+        "choices": [
+            "Assuming all samples are non-hazardous",
+            "Treating all human samples as potentially infectious",
+            "Only wearing PPE with known hazardous samples",
+            "Using gloves only when handling samples"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "In clinical chemistry, which test measures kidney function?",
+        "choices": [
+            "BUN and creatinine",
+            "Liver enzymes",
+            "Lipid panel",
+            "CBC"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "What is the primary purpose of using agar in microbiology?",
+        "choices": [
+            "To dissolve bacteria",
+            "To provide a nutrient medium for bacterial growth",
+            "To kill pathogens",
+            "To measure acidity"
+        ],
+        "correctAnswer": 1
+    },
+    {
+        "question": "Which of the following best describes aseptic technique?",
+        "choices": [
+            "Ensuring an environment free of all microorganisms",
+            "Washing hands only",
+            "Using disinfectants",
+            "Minimizing contamination in lab procedures"
+        ],
+        "correctAnswer": 3
+    },
+    {
+        "question": "What is the correct disposal method for biohazardous waste in a laboratory?",
+        "choices": [
+            "Throw it in a regular trash bin",
+            "Sterilize and dispose in biohazard bags",
+            "Flush it down the drain",
+            "Leave it in the sink"
+        ],
+        "correctAnswer": 1
+    }
+]
