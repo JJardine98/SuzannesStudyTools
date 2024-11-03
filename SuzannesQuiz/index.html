@@ -115,57 +115,62 @@
         }
 
         function submitQuiz() {
-            const resultsElement = document.getElementById("results");
-            let score = 0;
+    const resultsElement = document.getElementById("results");
+    let score = 0;
 
-            resultsElement.innerHTML = questions.map((question, index) => {
-                const isCorrect = selectedAnswers[index] === question.correctAnswer;
-                if (isCorrect) score++;
-                return `
-                    <p>
-                        <strong>Question ${index + 1}:</strong> ${question.question}<br>
-                        Your Answer: ${question.choices[selectedAnswers[index]] || "No Answer"}<br>
-                        Correct Answer: ${question.choices[question.correctAnswer]}<br>
-                        <span style="color: ${isCorrect ? 'green' : 'red'};">
-                            ${isCorrect ? 'Correct' : 'Incorrect'}
-                        </span>
-                    </p>
-                `;
-            }).join("");
+    resultsElement.innerHTML = questions.map((question, index) => {
+        const isCorrect = selectedAnswers[index] === question.correctAnswer;
+        if (isCorrect) score++;
+        return `
+            <p>
+                <strong>Question ${index + 1}:</strong> ${question.question}<br>
+                Your Answer: ${question.choices[selectedAnswers[index]] || "No Answer"}<br>
+                Correct Answer: ${question.choices[question.correctAnswer]}<br>
+                <span style="color: ${isCorrect ? 'green' : 'red'};">
+                    ${isCorrect ? 'Correct' : 'Incorrect'}
+                </span>
+            </p>
+        `;
+    }).join("");
 
-            resultsElement.innerHTML += `<p><strong>Total Score:</strong> ${score} out of ${questions.length}</p>`;
-            resultsElement.style.display = "block";
-            document.getElementById("quiz").style.display = "none";
+    resultsElement.innerHTML += `<p><strong>Total Score:</strong> ${score} out of ${questions.length}</p>`;
+    resultsElement.style.display = "block";
+    document.getElementById("quiz").style.display = "none";
 
-            // Save quiz result to local storage after displaying score
-            saveQuizResult(score, questions.length);
-        }
+    // Save quiz result to local storage after displaying score
+    saveQuizResult(score, questions.length);
+}
 
-        function saveQuizResult(score, total) {
-            const quizSelector = document.getElementById("quizSelector");
-            const quizName = quizSelector.options[quizSelector.selectedIndex].text;
-            const detailedResults = questions.map((question, index) => {
-                return {
-                    question: question.question,
-                    selectedAnswer: question.choices[selectedAnswers[index]] || "No Answer",
-                    correctAnswer: question.choices[question.correctAnswer],
-                    isCorrect: selectedAnswers[index] === question.correctAnswer
-                };
-            });
+function saveQuizResult(score, total) {
+    const quizSelector = document.getElementById("quizSelector");
+    const quizName = quizSelector.options[quizSelector.selectedIndex].text;
+    const detailedResults = questions.map((question, index) => {
+        return {
+            question: question.question,
+            selectedAnswer: question.choices[selectedAnswers[index]] || "No Answer",
+            correctAnswer: question.choices[question.correctAnswer],
+            isCorrect: selectedAnswers[index] === question.correctAnswer
+        };
+    });
 
-            const result = {
-                quizName,
-                score,
-                total,
-                date: new Date().toLocaleDateString(),
-                detailedResults // Store detailed answers and correctness
-            };
+    const result = {
+        quizName,
+        score,
+        total,
+        date: new Date().toLocaleDateString(),
+        detailedResults
+    };
 
-            // Retrieve existing stats and append the new result
-            let stats = JSON.parse(localStorage.getItem("quizStats")) || [];
-            stats.push(result);
-            localStorage.setItem("quizStats", JSON.stringify(stats));
-        }
+    // Log the result to check if it's being created correctly
+    console.log("Saving quiz result:", result);
+
+    // Retrieve existing stats and append the new result
+    let stats = JSON.parse(localStorage.getItem("quizStats")) || [];
+    stats.push(result);
+    console.log("Current stats before saving:", stats); // Log current stats
+    localStorage.setItem("quizStats", JSON.stringify(stats));
+}
+
 
         function exitQuiz() {
             document.getElementById("quiz").style.display = "none";
