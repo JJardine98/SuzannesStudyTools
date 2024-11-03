@@ -15,16 +15,82 @@
             <option value="flashcards.json">National Lab Tech Exam</option>
             <option value="set2.json">Biology Flashcards</option>
             <option value="set3.json">Chemistry Flashcards</option>
-            <!-- Add more sets as needed -->
         </select>
 
         <div id="flashcard" class="flashcard" style="display: none;">
             <div class="flashcard-question" id="flashcard-text">Click to see the answer!</div>
             <div class="flashcard-answer" id="flashcard-answer" style="display: none;">Answer will be displayed here.</div>
         </div>
-        <button id="nextButton" onclick="loadFlashcard()" style="display: none;">Next Flashcard</button>
+        <button id="prevButton" onclick="previousFlashcard()" style="display: none;">Previous Flashcard</button>
+        <button id="nextButton" onclick="nextFlashcard()" style="display: none;">Next Flashcard</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        let currentFlashcardIndex = 0;
+        let flashcards = [];
+
+        // Load flashcards from the selected JSON file
+        function loadFlashcards() {
+            const selectedSet = document.getElementById('flashcard-set').value;
+
+            if (!selectedSet) {
+                document.getElementById('flashcard').style.display = 'none';
+                document.getElementById('nextButton').style.display = 'none';
+                document.getElementById('prevButton').style.display = 'none';
+                return;
+            }
+
+            fetch(selectedSet)
+                .then(response => response.json())
+                .then(data => {
+                    flashcards = data;
+                    currentFlashcardIndex = 0;
+                    loadFlashcard();
+                    document.getElementById('flashcard').style.display = 'block';
+                    document.getElementById('nextButton').style.display = 'block';
+                    document.getElementById('prevButton').style.display = 'block';
+                })
+                .catch(error => console.error('Error loading flashcards:', error));
+        }
+
+        // Load the current flashcard
+        function loadFlashcard() {
+            const flashcardText = document.getElementById('flashcard-text');
+            const flashcardAnswer = document.getElementById('flashcard-answer');
+
+            if (flashcards.length === 0) {
+                flashcardText.textContent = 'No flashcards available.';
+                flashcardAnswer.style.display = 'none';
+                return;
+            }
+
+            flashcardText.textContent = flashcards[currentFlashcardIndex].question;
+            flashcardAnswer.textContent = flashcards[currentFlashcardIndex].answer;
+            flashcardAnswer.style.display = 'none';
+        }
+
+        // Show the answer when the flashcard is clicked
+        document.getElementById('flashcard').addEventListener('click', () => {
+            const flashcardAnswer = document.getElementById('flashcard-answer');
+            flashcardAnswer.style.display = flashcardAnswer.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // Show the next flashcard
+        function nextFlashcard() {
+            currentFlashcardIndex = (currentFlashcardIndex + 1) % flashcards.length;
+            loadFlashcard();
+        }
+
+        // Show the previous flashcard
+        function previousFlashcard() {
+            currentFlashcardIndex = (currentFlashcardIndex - 1 + flashcards.length) % flashcards.length;
+            loadFlashcard();
+        }
+
+        // Load flashcards on page load
+        window.onload = () => {
+            loadFlashcards();
+        };
+    </script>
 </body>
 </html>
