@@ -30,6 +30,9 @@
         </div>
 
         <p id="score" style="display: none;"></p>
+        
+        <!-- Stats Page Link -->
+        <button onclick="window.location.href='stats.html'">View Stats</button>
        
     </div>
 
@@ -37,7 +40,7 @@
         let questions = [];
         let currentIndex = 0;
         let score = 0;
-        let selectedAnswers = []; // Stores user's selected answers for each question
+        let selectedAnswers = []; // Store user's selected answers for each question
 
         function loadQuiz() {
             const quizSelector = document.getElementById("quizSelector");
@@ -72,8 +75,18 @@
                 currentQuestion.choices.forEach((choice, index) => {
                     const button = document.createElement("button");
                     button.textContent = choice;
-                    button.onclick = () => selectAnswer(index);
-                    button.classList.toggle("selected", selectedAnswers[currentIndex] === index); // Highlight selected answer
+                    button.classList.add("choice-button");
+
+                    // Highlight selected answer
+                    if (selectedAnswers[currentIndex] === index) {
+                        button.classList.add("selected");
+                    }
+
+                    button.onclick = () => {
+                        selectAnswer(index);
+                        displayQuestion();
+                    };
+
                     choicesElement.appendChild(button);
                 });
 
@@ -123,20 +136,31 @@
             saveQuizResult(score, questions.length);
         }
 
-        function saveQuizResult(score, total) {
-            const quizSelector = document.getElementById("quizSelector");
-            const quizName = quizSelector.options[quizSelector.selectedIndex].text;
-            const result = {
-                quizName,
-                score,
-                total,
-                date: new Date().toLocaleDateString()
-            };
+        // Save quiz result to local storage
+function saveQuizResult(score, total) {
+    const quizSelector = document.getElementById("quizSelector");
+    const quizName = quizSelector.options[quizSelector.selectedIndex].text;
+    const detailedResults = questions.map((question, index) => {
+        return {
+            question: question.question,
+            selectedAnswer: question.choices[selectedAnswers[index]] || "No Answer",
+            correctAnswer: question.choices[question.correctAnswer],
+            isCorrect: selectedAnswers[index] === question.correctAnswer
+        };
+    });
 
-            let stats = JSON.parse(localStorage.getItem("quizStats")) || [];
-            stats.push(result);
-            localStorage.setItem("quizStats", JSON.stringify(stats));
-        }
+    const result = {
+        quizName,
+        score,
+        total,
+        date: new Date().toLocaleDateString(),
+        detailedResults // Store detailed answers and correctness
+    };
+
+    let stats = JSON.parse(localStorage.getItem("quizStats")) || [];
+    stats.push(result);
+    localStorage.setItem("quizStats", JSON.stringify(stats));
+}
 
         function exitQuiz() {
             document.getElementById("quiz").style.display = "none";
@@ -144,5 +168,6 @@
             document.getElementById("quizSelector").style.display = "block";
         }
     </script>
+
 </body>
 </html>

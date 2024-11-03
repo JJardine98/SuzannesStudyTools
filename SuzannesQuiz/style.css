@@ -119,6 +119,19 @@ button:active {
     background-color: #ffb6c1;
 }
 
+.choice-button {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.choice-button.selected {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
 /* Score Styles */
 #score {
     font-size: 1.2em;
@@ -181,4 +194,22 @@ button:active {
 
 #stats button:hover {
     background-color: #ff66b2;
+}
+
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: red;
+    font-weight: bold;
+}
+
+.stat-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }

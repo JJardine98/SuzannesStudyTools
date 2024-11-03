@@ -10,7 +10,7 @@
 
     <div class="stats-container">
         <h1>Your Quiz Stats</h1>
-        <ul id="statsList"></ul>
+        <div id="statsList"></div>
         <button onclick="goBack()">Back to Quiz Selector</button>
     </div>
 
@@ -21,15 +21,35 @@
             const stats = JSON.parse(localStorage.getItem("quizStats")) || [];
 
             stats.forEach(stat => {
-                const listItem = document.createElement("li");
-                listItem.textContent = `${stat.quizName} - ${stat.score}/${stat.total} on ${stat.date}`;
-                statsList.appendChild(listItem);
+                const statContainer = document.createElement("div");
+                statContainer.classList.add("stat-item");
+
+                const quizTitle = document.createElement("h2");
+                quizTitle.textContent = `${stat.quizName} - Score: ${stat.score}/${stat.total} - Date: ${stat.date}`;
+                statContainer.appendChild(quizTitle);
+
+                const questionsList = document.createElement("ul");
+
+                stat.detailedResults.forEach(result => {
+                    const questionItem = document.createElement("li");
+                    questionItem.innerHTML = `
+                        <strong>Question:</strong> ${result.question}<br>
+                        <strong>Your Answer:</strong> ${result.selectedAnswer} ${
+                            result.isCorrect ? "<span class='correct'>✓ Correct</span>" : "<span class='incorrect'>✗ Incorrect</span>"
+                        }<br>
+                        <strong>Correct Answer:</strong> ${result.correctAnswer}
+                    `;
+                    questionsList.appendChild(questionItem);
+                });
+
+                statContainer.appendChild(questionsList);
+                statsList.appendChild(statContainer);
             });
         });
 
         // Function to go back to the quiz selector page
         function goBack() {
-            window.location.href = 'index.html'; // Change 'index.html' to your main quiz page filename
+            window.location.href = 'index.html'; // Adjust if necessary
         }
     </script>
 </body>
