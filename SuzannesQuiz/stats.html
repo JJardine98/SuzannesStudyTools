@@ -16,27 +16,28 @@
 
     <script>
         function displayResults() {
-    const quizResultsElement = document.getElementById("quizResults");
-    const stats = JSON.parse(localStorage.getItem("quizStats")) || [];
+            const quizResultsElement = document.getElementById("quizResults");
+            const stats = JSON.parse(localStorage.getItem("quizStats")) || [];
 
-    if (stats.length === 0) {
-        quizResultsElement.innerHTML = "<p>No quizzes taken yet.</p>";
-        return;
-    }
+            // Check if there are no quiz results
+            if (stats.length === 0) {
+                quizResultsElement.innerHTML = "<p>No quizzes taken yet.</p>";
+                return;
+            }
 
-    quizResultsElement.innerHTML = stats.map((result, index) => `
-        <div class="result">
-            <h3>${result.quizName}</h3>
-            <p>Date: ${result.date}</p>
-            <p>Score: ${result.score} out of ${result.total}</p>
-            <button onclick="window.location.href='quizDetails.html?index=${index}'">View Details</button>
-        </div>
-    `).join("");
-}
+            // Populate the quiz results
+            quizResultsElement.innerHTML = stats.map((result, index) => `
+                <div class="result">
+                    <h3>${result.quizName}</h3>
+                    <p>Date: ${new Date(result.date).toLocaleDateString()}</p>
+                    <p>Score: ${result.score} out of ${result.total}</p>
+                    <button onclick="window.location.href='quizDetails.html?index=${index}'">View Details</button>
+                </div>
+            `).join("");
+        }
 
-// Call displayResults on page load
-window.onload = displayResults;
-
+        // Call displayResults on page load
+        window.onload = displayResults;
     </script>
 
 </body>

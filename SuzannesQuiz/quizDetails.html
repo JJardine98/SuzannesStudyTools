@@ -16,32 +16,33 @@
 
     <script>
         function displayQuizDetails() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const quizIndex = urlParams.get('index'); // Get the index of the quiz from the URL
-    const stats = JSON.parse(localStorage.getItem("quizStats"));
+            const urlParams = new URLSearchParams(window.location.search);
+            const quizIndex = urlParams.get('index'); // Get the index of the quiz from the URL
+            const stats = JSON.parse(localStorage.getItem("quizStats"));
 
-    if (!stats || quizIndex === null) {
-        document.getElementById("quizDetails").innerHTML = "<p>No quiz details found.</p>";
-        return;
-    }
+            // Check if stats exist and the quiz index is valid
+            if (!stats || quizIndex === null || quizIndex < 0 || quizIndex >= stats.length) {
+                document.getElementById("quizDetails").innerHTML = "<p>No quiz details found.</p>";
+                return;
+            }
 
-    const result = stats[quizIndex]; // Get the specific quiz result
-    const detailsHTML = result.detailedResults.map((item, idx) => `
-        <p>
-            <strong>Question ${idx + 1}:</strong> ${item.question}<br>
-            Your Answer: ${item.selectedAnswer}<br>
-            Correct Answer: ${item.correctAnswer}<br>
-            <span style="color: ${item.isCorrect ? 'green' : 'red'};">
-                ${item.isCorrect ? 'Correct' : 'Incorrect'}
-            </span>
-        </p>
-    `).join("");
+            const result = stats[quizIndex]; // Get the specific quiz result
+            const detailsHTML = result.detailedResults.map((item, idx) => `
+                <p>
+                    <strong>Question ${idx + 1}:</strong> ${item.question}<br>
+                    Your Answer: ${item.selectedAnswer}<br>
+                    Correct Answer: ${item.correctAnswer}<br>
+                    <span style="color: ${item.isCorrect ? 'green' : 'red'};">
+                        ${item.isCorrect ? 'Correct' : 'Incorrect'}
+                    </span>
+                </p>
+            `).join("");
 
-    document.getElementById("quizDetails").innerHTML = detailsHTML;
-}
+            document.getElementById("quizDetails").innerHTML = detailsHTML;
+        }
 
-// Call displayQuizDetails on page load
-window.onload = displayQuizDetails;
+        // Call displayQuizDetails on page load
+        window.onload = displayQuizDetails;
 
     </script>
 
