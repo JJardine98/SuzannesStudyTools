@@ -17,23 +17,132 @@
             <option value="Quizzes/nationalMockExam.json">Mock Exam #1</option>
             <option value="Quizzes/hematologyQuiz.json">Hematology Quiz</option>
             <option value="Quizzes/microbiologyQuiz.json">Microbiology Quiz</option>
-            <option value="phlebotomyQuiz.json">Phlebotomy Quiz</option>
+            <option value="Quizzes/phlebotomyQuiz.json">Phlebotomy Quiz</option>
         </select>
 
         <div id="quiz" style="display: none;">
             <p id="question">Select a quiz to start!</p>
             <div id="choices"></div>
+            <button id="prevButton" onclick="previousQuestion()" style="display: none;">Previous</button>
+            <button id="nextButton" onclick="nextQuestion()" style="display: none;">Next</button>
+            <button id="submitButton" onclick="submitQuiz()" style="display: none;">Submit</button>
             <button id="exitButton" onclick="exitQuiz()">Exit Quiz</button>
         </div>
 
         <p id="score" style="display: none;"></p>
-        
-        <!-- Stats Page Link -->
-        <button onclick="window.location.href='stats.html'">View Stats</button>
-        
        
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        let questions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let selectedAnswers = []; // Stores user's selected answers for each question
+
+        function loadQuiz() {
+            const quizSelector = document.getElementById("quizSelector");
+            const selectedQuiz = quizSelector.value;
+
+            if (selectedQuiz) {
+                fetch(selectedQuiz)
+                    .then(response => response.json())
+                    .then(data => {
+                        questions = data;
+                        currentIndex = 0;
+                        score = 0;
+                        selectedAnswers = Array(questions.length).fill(null);
+                        document.getElementById("score").style.display = "none";
+                        displayQuestion();
+                    })
+                    .catch(error => console.error("Error loading quiz:", error));
+            } else {
+                document.getElementById("quiz").style.display = "none";
+            }
+        }
+
+        function displayQuestion() {
+            if (currentIndex < questions.length) {
+                const questionElement = document.getElementById("question");
+                const choicesElement = document.getElementById("choices");
+                const currentQuestion = questions[currentIndex];
+
+                questionElement.textContent = currentQuestion.question;
+                choicesElement.innerHTML = "";
+
+                currentQuestion.choices.forEach((choice, index) => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.onclick = () => selectAnswer(index);
+                    button.classList.toggle("selected", selectedAnswers[currentIndex] === index); // Highlight selected answer
+                    choicesElement.appendChild(button);
+                });
+
+                // Show/Hide Navigation and Submit Buttons
+                document.getElementById("quiz").style.display = "block";
+                document.getElementById("prevButton").style.display = currentIndex > 0 ? "inline" : "none";
+                document.getElementById("nextButton").style.display = currentIndex < questions.length - 1 ? "inline" : "none";
+                document.getElementById("submitButton").style.display = currentIndex === questions.length - 1 ? "inline" : "none";
+            }
+        }
+
+        function selectAnswer(index) {
+            selectedAnswers[currentIndex] = index; // Store the selected answer
+        }
+
+        function nextQuestion() {
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                displayQuestion();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            calculateScore();
+            displayScore();
+        }
+
+        function calculateScore() {
+            score = selectedAnswers.reduce((acc, answer, index) => {
+                return acc + (answer === questions[index].correctAnswer ? 1 : 0);
+            }, 0);
+        }
+
+        function displayScore() {
+            document.getElementById("quiz").style.display = "none";
+            const scoreElement = document.getElementById("score");
+            scoreElement.textContent = `You scored ${score} out of ${questions.length}`;
+            scoreElement.style.display = "block";
+
+            saveQuizResult(score, questions.length);
+        }
+
+        function saveQuizResult(score, total) {
+            const quizSelector = document.getElementById("quizSelector");
+            const quizName = quizSelector.options[quizSelector.selectedIndex].text;
+            const result = {
+                quizName,
+                score,
+                total,
+                date: new Date().toLocaleDateString()
+            };
+
+            let stats = JSON.parse(localStorage.getItem("quizStats")) || [];
+            stats.push(result);
+            localStorage.setItem("quizStats", JSON.stringify(stats));
+        }
+
+        function exitQuiz() {
+            document.getElementById("quiz").style.display = "none";
+            document.getElementById("score").style.display = "none";
+            document.getElementById("quizSelector").style.display = "block";
+        }
+    </script>
 </body>
 </html>
