@@ -15,10 +15,14 @@
     </div>
 
     <script>
-        // Retrieve stats from local storage and display them
         document.addEventListener("DOMContentLoaded", () => {
             const statsList = document.getElementById("statsList");
             const stats = JSON.parse(localStorage.getItem("quizStats")) || [];
+
+            if (stats.length === 0) {
+                statsList.innerHTML = "<p>No quiz stats available.</p>";
+                return;
+            }
 
             stats.forEach(stat => {
                 const statContainer = document.createElement("div");
@@ -29,7 +33,6 @@
                 statContainer.appendChild(quizTitle);
 
                 const questionsList = document.createElement("ul");
-
                 stat.detailedResults.forEach(result => {
                     const questionItem = document.createElement("li");
                     questionItem.innerHTML = `
@@ -47,9 +50,8 @@
             });
         });
 
-        // Function to go back to the quiz selector page
         function goBack() {
-            window.location.href = 'index.html'; // Adjust if necessary
+            window.location.href = 'index.html';
         }
     </script>
 </body>

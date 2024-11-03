@@ -53,8 +53,9 @@
                         questions = data;
                         currentIndex = 0;
                         score = 0;
-                        selectedAnswers = Array(questions.length).fill(null);
+                        selectedAnswers = Array(questions.length).fill(null); // Reset selected answers
                         document.getElementById("score").style.display = "none";
+                        document.getElementById("quizSelector").style.display = "none"; // Hide selector after quiz start
                         displayQuestion();
                     })
                     .catch(error => console.error("Error loading quiz:", error));
@@ -137,35 +138,38 @@
         }
 
         // Save quiz result to local storage
-function saveQuizResult(score, total) {
-    const quizSelector = document.getElementById("quizSelector");
-    const quizName = quizSelector.options[quizSelector.selectedIndex].text;
-    const detailedResults = questions.map((question, index) => {
-        return {
-            question: question.question,
-            selectedAnswer: question.choices[selectedAnswers[index]] || "No Answer",
-            correctAnswer: question.choices[question.correctAnswer],
-            isCorrect: selectedAnswers[index] === question.correctAnswer
-        };
-    });
+        function saveQuizResult(score, total) {
+            const quizSelector = document.getElementById("quizSelector");
+            const quizName = quizSelector.options[quizSelector.selectedIndex].text;
+            const detailedResults = questions.map((question, index) => {
+                return {
+                    question: question.question,
+                    selectedAnswer: question.choices[selectedAnswers[index]] || "No Answer",
+                    correctAnswer: question.choices[question.correctAnswer],
+                    isCorrect: selectedAnswers[index] === question.correctAnswer
+                };
+            });
 
-    const result = {
-        quizName,
-        score,
-        total,
-        date: new Date().toLocaleDateString(),
-        detailedResults // Store detailed answers and correctness
-    };
+            const result = {
+                quizName,
+                score,
+                total,
+                date: new Date().toLocaleDateString(),
+                detailedResults // Store detailed answers and correctness
+            };
 
-    let stats = JSON.parse(localStorage.getItem("quizStats")) || [];
-    stats.push(result);
-    localStorage.setItem("quizStats", JSON.stringify(stats));
-}
+            let stats = JSON.parse(localStorage.getItem("quizStats")) || [];
+            stats.push(result);
+            localStorage.setItem("quizStats", JSON.stringify(stats));
+        }
 
         function exitQuiz() {
             document.getElementById("quiz").style.display = "none";
             document.getElementById("score").style.display = "none";
             document.getElementById("quizSelector").style.display = "block";
+            selectedAnswers = []; // Clear selected answers
+            currentIndex = 0; // Reset index
+            questions = []; // Clear questions
         }
     </script>
 
