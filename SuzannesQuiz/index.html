@@ -23,10 +23,13 @@
         <div id="quiz" style="display: none;">
             <p id="question">Select a quiz to start!</p>
             <div id="choices"></div>
-            <button id="nextButton" onclick="nextQuestion()">Next</button>
+            <button id="prevButton" onclick="previousQuestion()" style="display: none;">Previous</button>
+            <button id="nextButton" onclick="nextQuestion()" style="display: none;">Next</button>
             <button id="submitButton" onclick="submitQuiz()" style="display: none;">Submit</button>
             <button id="exitButton" onclick="exitQuiz()">Exit Quiz</button>
         </div>
+
+        <button onclick="window.location.href='stats.html'">View Stats</button>
 
         <div id="results" style="display: none;"></div>
 
@@ -48,6 +51,11 @@
                         questions = data;
                         currentIndex = 0;
                         selectedAnswers = Array(questions.length).fill(null);
+                        
+                        // Clear previous results
+                        document.getElementById("results").style.display = "none";
+                        document.getElementById("results").innerHTML = "";
+                        
                         displayQuestion();
                     })
                     .catch(error => console.error("Error loading quiz:", error));
@@ -69,11 +77,19 @@
                     const button = document.createElement("button");
                     button.textContent = choice;
                     button.classList.add("choice-button");
+                    
+                    // Highlight selected answer
+                    if (selectedAnswers[currentIndex] === index) {
+                        button.classList.add("selected");
+                    }
+
                     button.onclick = () => selectAnswer(index);
                     choicesElement.appendChild(button);
                 });
 
+                // Show/Hide Navigation and Submit Buttons
                 document.getElementById("quiz").style.display = "block";
+                document.getElementById("prevButton").style.display = currentIndex > 0 ? "inline" : "none";
                 document.getElementById("nextButton").style.display = currentIndex < questions.length - 1 ? "inline" : "none";
                 document.getElementById("submitButton").style.display = currentIndex === questions.length - 1 ? "inline" : "none";
             }
@@ -81,11 +97,19 @@
 
         function selectAnswer(index) {
             selectedAnswers[currentIndex] = index; // Store the selected answer
+            displayQuestion(); // Update highlighting
         }
 
         function nextQuestion() {
             if (currentIndex < questions.length - 1) {
                 currentIndex++;
+                displayQuestion();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
                 displayQuestion();
             }
         }
@@ -113,6 +137,31 @@
             resultsElement.style.display = "block";
             document.getElementById("quiz").style.display = "none";
         }
+
+        function saveQuizResult(score, total) {
+    const quizSelector = document.getElementById("quizSelector");
+    const quizName = quizSelector.options[quizSelector.selectedIndex].text;
+    const detailedResults = questions.map((question, index) => {
+        return {
+            question: question.question,
+            selectedAnswer: question.choices[selectedAnswers[index]] || "No Answer",
+            correctAnswer: question.choices[question.correctAnswer],
+            isCorrect: selectedAnswers[index] === question.correctAnswer
+        };
+    });
+
+    const result = {
+        quizName,
+        score,
+        total,
+        date: new Date().toLocaleDateString(),
+        detailedResults // Store detailed answers and correctness
+    };
+
+    let stats = JSON.parse(localStorage.getItem("quizStats")) || [];
+    stats.push(result);
+    localStorage.setItem("quizStats", JSON.stringify(stats));
+}
 
         function exitQuiz() {
             document.getElementById("quiz").style.display = "none";

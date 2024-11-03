@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="details-container">
+        <h1>Quiz Details</h1>
+        <div id="quizDetails"></div>
+        <button onclick="window.location.href='stats.html'">Back to Results</button>
+    </div>
+
+    <script>
+        function displayQuizDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const quizIndex = urlParams.get('index'); // Get the index of the quiz from the URL
+    const stats = JSON.parse(localStorage.getItem("quizStats"));
+
+    if (!stats || quizIndex === null) {
+        document.getElementById("quizDetails").innerHTML = "<p>No quiz details found.</p>";
+        return;
+    }
+
+    const result = stats[quizIndex]; // Get the specific quiz result
+    const detailsHTML = result.detailedResults.map((item, idx) => `
+        <p>
+            <strong>Question ${idx + 1}:</strong> ${item.question}<br>
+            Your Answer: ${item.selectedAnswer}<br>
+            Correct Answer: ${item.correctAnswer}<br>
+            <span style="color: ${item.isCorrect ? 'green' : 'red'};">
+                ${item.isCorrect ? 'Correct' : 'Incorrect'}
+            </span>
+        </p>
+    `).join("");
+
+    document.getElementById("quizDetails").innerHTML = detailsHTML;
+}
+
+// Call displayQuizDetails on page load
+window.onload = displayQuizDetails;
+
+    </script>
+
+</body>
+</html>

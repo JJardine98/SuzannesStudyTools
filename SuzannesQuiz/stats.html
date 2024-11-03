@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="stats-container">
+        <h1>Quiz Results</h1>
+        <div id="quizResults"></div>
+        <button onclick="window.location.href='index.html'">Back to Quiz</button>
+    </div>
+
+    <script>
+        function displayResults() {
+    const quizResultsElement = document.getElementById("quizResults");
+    const stats = JSON.parse(localStorage.getItem("quizStats")) || [];
+
+    if (stats.length === 0) {
+        quizResultsElement.innerHTML = "<p>No quizzes taken yet.</p>";
+        return;
+    }
+
+    quizResultsElement.innerHTML = stats.map((result, index) => `
+        <div class="result">
+            <h3>${result.quizName}</h3>
+            <p>Date: ${result.date}</p>
+            <p>Score: ${result.score} out of ${result.total}</p>
+            <button onclick="window.location.href='quizDetails.html?index=${index}'">View Details</button>
+        </div>
+    `).join("");
+}
+
+// Call displayResults on page load
+window.onload = displayResults;
+
+    </script>
+
+</body>
+</html>
