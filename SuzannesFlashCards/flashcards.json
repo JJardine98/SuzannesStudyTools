@@ -1,0 +1,66 @@
+[
+    {
+        "question": "What is the primary purpose of Quality Control (QC) in a laboratory?",
+        "answer": "To ensure the accuracy and reliability of test results by monitoring the entire testing process."
+    },
+    {
+        "question": "What is the difference between precision and accuracy?",
+        "answer": "Precision refers to the consistency of results, while accuracy refers to how close results are to the true value."
+    },
+    {
+        "question": "What is the role of a centrifuge in laboratory procedures?",
+        "answer": "To separate components of a mixture based on density by spinning the samples at high speeds."
+    },
+    {
+        "question": "What does the acronym 'CLIA' stand for?",
+        "answer": "Clinical Laboratory Improvement Amendments."
+    },
+    {
+        "question": "What is the recommended action if you encounter an out-of-control QC result?",
+        "answer": "Investigate the cause, correct the issue, and document the findings before resuming testing."
+    },
+    {
+        "question": "What type of specimen is primarily used for microbiological culture?",
+        "answer": "A swab or bodily fluid such as blood, urine, or sputum."
+    },
+    {
+        "question": "What is the significance of the 'reagent blank' in analytical chemistry?",
+        "answer": "To account for any background signals or contaminants that may interfere with the measurement of the sample."
+    },
+    {
+        "question": "Define the term 'aseptic technique'.",
+        "answer": "A set of practices used to prevent contamination by pathogens during laboratory procedures."
+    },
+    {
+        "question": "What is the purpose of a control sample in laboratory testing?",
+        "answer": "To provide a standard for comparison to ensure test validity."
+    },
+    {
+        "question": "What is the maximum time allowed for processing blood cultures?",
+        "answer": "Within 24 hours for optimal detection of microorganisms."
+    },
+    {
+        "question": "What is the function of the Gram stain?",
+        "answer": "To differentiate bacterial species into two groups based on the composition of their cell walls."
+    },
+    {
+        "question": "What is the proper procedure for handling hazardous materials in the lab?",
+        "answer": "Follow Material Safety Data Sheet (MSDS) guidelines, wear appropriate personal protective equipment (PPE), and ensure proper ventilation."
+    },
+    {
+        "question": "What is a common method for sterilizing lab equipment?",
+        "answer": "Autoclaving, which uses high-pressure steam to eliminate all microorganisms."
+    },
+    {
+        "question": "What type of microscopy is used for viewing living cells in their natural state?",
+        "answer": "Phase-contrast microscopy."
+    },
+    {
+        "question": "What is the primary purpose of a laboratory information system (LIS)?",
+        "answer": "To manage laboratory data and improve workflow efficiency by tracking samples and results."
+    },
+    {
+        "question": "Define 'PCR' and its use in the laboratory.",
+        "answer": "Polymerase Chain Reaction; a technique used to amplify specific DNA sequences for analysis."
+    }
+]

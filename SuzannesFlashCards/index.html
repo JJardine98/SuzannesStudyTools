@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="flashcard-container">
+        <h1>Flashcard App</h1>
+        <label for="flashcard-set">Choose a Flashcard Set:</label>
+        <select id="flashcard-set" onchange="loadFlashcards()">
+            <option value="">Select a set</option>
+            <option value="flashcards.json">National Lab Tech Exam</option>
+            <option value="set2.json">Biology Flashcards</option>
+            <option value="set3.json">Chemistry Flashcards</option>
+            <!-- Add more sets as needed -->
+        </select>
+
+        <div id="flashcard" class="flashcard" style="display: none;">
+            <div class="flashcard-question" id="flashcard-text">Click to see the answer!</div>
+            <div class="flashcard-answer" id="flashcard-answer" style="display: none;">Answer will be displayed here.</div>
+        </div>
+        <button id="nextButton" onclick="loadFlashcard()" style="display: none;">Next Flashcard</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
