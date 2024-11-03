@@ -136,37 +136,44 @@
             resultsElement.innerHTML += `<p><strong>Total Score:</strong> ${score} out of ${questions.length}</p>`;
             resultsElement.style.display = "block";
             document.getElementById("quiz").style.display = "none";
+
+            // Save quiz result to local storage after displaying score
+            saveQuizResult(score, questions.length);
         }
 
         function saveQuizResult(score, total) {
-    const quizSelector = document.getElementById("quizSelector");
-    const quizName = quizSelector.options[quizSelector.selectedIndex].text;
-    const detailedResults = questions.map((question, index) => {
-        return {
-            question: question.question,
-            selectedAnswer: question.choices[selectedAnswers[index]] || "No Answer",
-            correctAnswer: question.choices[question.correctAnswer],
-            isCorrect: selectedAnswers[index] === question.correctAnswer
-        };
-    });
+            const quizSelector = document.getElementById("quizSelector");
+            const quizName = quizSelector.options[quizSelector.selectedIndex].text;
+            const detailedResults = questions.map((question, index) => {
+                return {
+                    question: question.question,
+                    selectedAnswer: question.choices[selectedAnswers[index]] || "No Answer",
+                    correctAnswer: question.choices[question.correctAnswer],
+                    isCorrect: selectedAnswers[index] === question.correctAnswer
+                };
+            });
 
-    const result = {
-        quizName,
-        score,
-        total,
-        date: new Date().toLocaleDateString(),
-        detailedResults // Store detailed answers and correctness
-    };
+            const result = {
+                quizName,
+                score,
+                total,
+                date: new Date().toLocaleDateString(),
+                detailedResults // Store detailed answers and correctness
+            };
 
-    let stats = JSON.parse(localStorage.getItem("quizStats")) || [];
-    stats.push(result);
-    localStorage.setItem("quizStats", JSON.stringify(stats));
-}
+            // Retrieve existing stats and append the new result
+            let stats = JSON.parse(localStorage.getItem("quizStats")) || [];
+            stats.push(result);
+            localStorage.setItem("quizStats", JSON.stringify(stats));
+        }
 
         function exitQuiz() {
             document.getElementById("quiz").style.display = "none";
             document.getElementById("results").style.display = "none";
             document.getElementById("quizSelector").value = ""; // Reset the quiz selector
+            questions = []; // Clear the questions for next use
+            selectedAnswers = []; // Clear selected answers
+            currentIndex = 0; // Reset current index
         }
     </script>
 
